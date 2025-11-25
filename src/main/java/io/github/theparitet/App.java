@@ -47,7 +47,7 @@ public class App {
 
         Screen screen = null;
 
-
+//        SAMPLE
         FolderNode folder1 = new FolderNode("Pictures", root);
 
         FolderNode nested11 = new FolderNode("Landscape");
@@ -145,6 +145,7 @@ public class App {
         root.addChild(new FileNode("screenshot2025.png", root));
         root.addChild(new FileNode("PHY201 formulae.pdf", root));
         root.addChild(new FileNode("passwords.txt", root));
+//        SAMPLE
 
 
         try {
