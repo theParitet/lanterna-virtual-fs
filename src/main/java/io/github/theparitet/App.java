@@ -297,7 +297,8 @@ public class App {
                         String s = renderTree(root, flatTree);
                         String[] lines = s.split("\n");
                         ActionListDialogBuilder aldb = new ActionListDialogBuilder()
-                                .setTitle("File Tree");
+                                .setTitle("File Tree")
+                                .setListBoxSize(new TerminalSize(mainWindow.getSize().getColumns(), mainWindow.getSize().getRows()-2));
                         Iterator<String> lineIterator = List.of(lines).iterator();
                         flatTree.forEach(n -> {
                             aldb.addAction(lineIterator.next(),() -> {
@@ -390,7 +391,8 @@ public class App {
                     List<Node> found = searchRecursively(toSearch);
                     if (!found.isEmpty()) {
                         ActionListDialogBuilder aldb = new ActionListDialogBuilder()
-                                .setTitle("Search Matches");
+                                .setTitle("Search Matches")
+                                .setListBoxSize(new TerminalSize(mainWindow.getSize().getColumns(), mainWindow.getSize().getRows()-2));
                         found.forEach(node -> {
                             aldb.addAction(node.getName(), () -> {
                                 nodeAction(node);
@@ -582,6 +584,7 @@ public class App {
                             String nodeName = new TextInputDialogBuilder()
                                     .setTitle("Enter the new name for " + item.getName() + " " + nodeType + ":")
                                     .setDescription("")
+                                    .setInitialContent(item.getName())
                                     .build()
                                     .showDialog(textGUI);
                             if (nodeName != null) {
