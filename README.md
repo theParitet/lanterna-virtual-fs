@@ -39,6 +39,8 @@ To run the application build:
 
 `java -jar LanternaVFS.jar`
 
+`java -jar LanternaVFS.jar --swing` – to force the Swing frontend on Linux & macOS
+
 ### Compatibility
 
 The application runs well on the CLI of macOS and Linux systems.
