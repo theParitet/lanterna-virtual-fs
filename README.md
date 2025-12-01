@@ -1,6 +1,6 @@
 # Lanterna Virtual File System
 
-...
+<img width="600" src="https://github.com/theParitet/lanterna-virtual-fs/blob/main/docs/assets/cli-demo1.gif?raw=true" alt="CLI terminal window running the Lanterna application." />
 
 This is a virtual file system implemented with a TUI built on the Lanterna API.
 
@@ -18,7 +18,12 @@ Notable:
 - Startup configuration phase
 - Info and help pages
 
-...
+
+<p>
+  <img width="300" src="https://github.com/theParitet/lanterna-virtual-fs/blob/main/docs/assets/swing-demo1.png?raw=true" alt="Retro gray file manager with a split-pane interface in a Swing window." />
+  <img width="300" src="https://github.com/theParitet/lanterna-virtual-fs/blob/main/docs/assets/swing-demo2.png?raw=true" alt="Blue-themed file manager TUI in a Swing window showing a file creation dialog." />
+</p>
+<img width="600" src="https://github.com/theParitet/lanterna-virtual-fs/blob/main/docs/assets/swing-demo3.png?raw=true" alt="Matrix-styled file editor displaying JSX editting in a Swing window." />
 
 ## Run
 
