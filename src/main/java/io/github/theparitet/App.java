@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class App {
 
-    public static FolderNode root = new FolderNode("~", null);
+    public static final FolderNode root = new FolderNode("~", null);
     public static FolderNode currentFolder = root;
     public static Label pathLabel;
     public static Label previewLabel;
@@ -43,11 +43,13 @@ public class App {
 
     public static void main(String[] args) {
         DefaultTerminalFactory dtf = new DefaultTerminalFactory();
-        boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
 
-        if (isWindows) {
+        boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
+        boolean forceSwing = Arrays.asList(args).contains("--swing");
+
+        if (isWindows || forceSwing) {
             dtf.setPreferTerminalEmulator(true);
-            dtf.setTerminalEmulatorTitle("Lanterna VFS (Windows Compatibility Mode)");
+            dtf.setTerminalEmulatorTitle("Lanterna VFS – " + (forceSwing ? "Swing Emulation" : "Windows Compatibility Mode"));
         } else {
             dtf.setPreferTerminalEmulator(false);
         }
@@ -118,6 +120,7 @@ public class App {
             ww.setComponent(pp);
             textGUI.addWindowAndWait(ww);
 
+//            optional sample
             boolean addSample = new MessageDialogBuilder()
                     .setTitle("Sample Data")
                     .setText("\nDo you want to start off with pre-generated\nsample data (recommended)?")
