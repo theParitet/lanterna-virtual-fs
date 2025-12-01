@@ -37,24 +37,36 @@ Notable:
 
 To run the application build:
 
-`java -jar LanternaVFS.jar`
+```bash
+java -jar LanternaVFS.jar
+```
 
-`java -jar LanternaVFS.jar --swing` – to force the Swing frontend on Linux & macOS
+To force the Swing frontend on Linux & macOS:
+
+```bash
+java -jar LanternaVFS.jar --swing
+```
 
 ### Compatibility
 
-The application runs well on the CLI of macOS and Linux systems.
+| Frontend | macOS | Linux | Windows |
+| -------- | :---: | :---: | :-----: |
+| CLI      | ✅    | ✅    | ❌      |
+| Swing    | ✅    | ✅    | ✅      |
 
-Lanterna’s Windows backend has incomplete support for modern terminal features. Cannot be run in WT, CMD and PowerShell in its current implementation. Due to this limited compatibility, the application 
-will **fall back to a Swing app on Windows**, instead of running on command line. 
+The application runs well on the CLI and Swing frontend on macOS and Linux systems.
 
-Limited terminal color and character encoding UTF-8 support are the root of many UI issues. Use terminal with UTF-8 and rich color support.
+Lanterna’s Windows backend cannot leverage modern terminal features due to the lack of the native Windows API layer. It cannot be run reliably in WT, CMD and PowerShell in its current implementation. The application will **fall back to a Swing frontend on Windows**, instead of running on the command line. 
+
+Limited terminal color and character encoding UTF-8 support are the root of many UI issues. Use terminal with UTF-8 and rich color support. Alternatively, use Swing frontend.
 
 ## Build
 
 To build the application:
 
-`./mvnw clean package`
+```bash
+./mvnw clean package
+```
 
 The executables are placed in `target` directory:
 
