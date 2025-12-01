@@ -25,6 +25,14 @@ Notable:
 </p>
 <img width="600" src="https://github.com/theParitet/lanterna-virtual-fs/blob/main/docs/assets/swing-demo3.png?raw=true" alt="Matrix-styled file editor displaying JSX editting in a Swing window." />
 
+## Tech
+
+- Java (21)
+- Apache Maven – build tool
+- Maven Wrapper – for consistent, reproducible builds
+- Maven Shade Plugin – for creating fat/uber `.jar` executables
+- [Lanterna](https://github.com/mabe02/lanterna) (3.1+) – TUI library, the base of the project 
+
 ## Run
 
 To run the application build:
