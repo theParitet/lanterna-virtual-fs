@@ -31,6 +31,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class App {
+    public static final String APP_VERSION = "0.1.1";
 
     public static final FolderNode root = new FolderNode("~", null);
     public static FolderNode currentFolder = root;
@@ -148,7 +149,7 @@ public class App {
                     }))
                     .add(new MenuItem("Technical Info", () -> {
                         notify("Technical Info", "" +
-                                "Version:                                  0.1\n" +
+                                "Version:                                "+APP_VERSION+"\n" +
                                 "Programming Language:               Java (21)\n" +
                                 "Package Manager:                        Maven\n" +
                                 "Libraries:             Lanterna (TUI library)\n" +
