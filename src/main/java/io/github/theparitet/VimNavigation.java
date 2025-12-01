@@ -1,13 +1,11 @@
 package io.github.theparitet;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class VimNavigation implements WindowListener {
+public class VimNavigation extends WindowListenerAdapter {
     @Override
     public void onInput(Window window, KeyStroke keyStroke, AtomicBoolean atomicBoolean) {
         if (keyStroke.getKeyType() != KeyType.Character) {
@@ -36,8 +34,4 @@ public class VimNavigation implements WindowListener {
             window.handleInput(new KeyStroke(direction));
         }
     }
-
-    @Override public void onResized(Window window, TerminalSize terminalSize, TerminalSize terminalSize1) { }
-    @Override public void onMoved(Window window, TerminalPosition terminalPosition, TerminalPosition terminalPosition1) { }
-    @Override public void onUnhandledInput(Window window, KeyStroke keyStroke, AtomicBoolean atomicBoolean) { }
 }

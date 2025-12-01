@@ -1,12 +1,19 @@
 package io.github.theparitet;
 
 /**
+ * Copyright (c) 2025 Aleksandr Grechin
+ *
  * This file is part of LanternaVFS project (https://github.com/theParitet/lanterna-virtual-fs).
- * Check out README.md and LICENSE for more information.
+ * This source code falls under MIT license that can be found in the root of the project.
+ *
+ * Check out README.md and LICENSE files to learn more at:
+ *     https://github.com/theParitet/lanterna-virtual-fs/blob/main/README.md
+ * and
+ *     https://github.com/theParitet/lanterna-virtual-fs/blob/main/LICENSE
+ * respectively.
  */
 
 import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.bundle.LanternaThemes;
 import com.googlecode.lanterna.gui2.*;
@@ -47,107 +54,6 @@ public class App {
 
         Screen screen = null;
 
-//        SAMPLE
-        FolderNode folder1 = new FolderNode("Pictures", root);
-
-        FolderNode nested11 = new FolderNode("Landscape");
-        FileNode nested111 = new FileNode("mountains.png");
-        FileNode nested112 = new FileNode("sunset.jpg");
-        nested11.addChild(nested111);
-        nested11.addChild(nested112);
-        FolderNode nested12 = new FolderNode("Puppies");
-        FileNode nested121 = new FileNode("puppy.png");
-        FileNode nested122 = new FileNode("puppy2.jpg");
-        nested12.addChild(nested121);
-        nested12.addChild(nested122);
-        FolderNode nested13 = new FolderNode("Travel");
-        FileNode nested131 = new FileNode("paris.png");
-        FileNode nested132 = new FileNode("tokyo.jpg");
-        nested13.addChild(nested131);
-        nested13.addChild(nested132);
-        folder1.addChild(nested11);
-        folder1.addChild(nested12);
-        folder1.addChild(nested13);
-
-        FolderNode folder2 = new FolderNode("Games", root);
-
-        FolderNode nested21 = new FolderNode("Shooters");
-        FileNode nested22 = new FileNode("WarThunder.exe");
-        FileNode nested23 = new FileNode("CallOfDuty.exe");
-        nested21.addChild(nested22);
-        nested21.addChild(nested23);
-        FolderNode nested24 = new FolderNode("RPG");
-        FileNode nested25 = new FileNode("Skyrim.exe");
-        FileNode nested26 = new FileNode("Witcher3.exe");
-        FileNode nested27 = new FileNode("savegame1.sav");
-        FileNode nested28 = new FileNode("savegame2.sav");
-        nested24.addChild(nested25);
-        nested24.addChild(nested26);
-        nested24.addChild(nested27);
-        nested24.addChild(nested28);
-        FolderNode nested29 = new FolderNode("Indie");
-        FileNode nested210 = new FileNode("HollowKnight.exe");
-        FileNode nested211 = new FileNode("StardewValley.exe");
-        FileNode nested212 = new FileNode("notes.txt"); // maybe a random modding note
-        nested29.addChild(nested210);
-        nested29.addChild(nested211);
-        nested29.addChild(nested212);
-        FolderNode nested213 = new FolderNode("Retro");
-        FileNode nested214 = new FileNode("PacMan.exe");
-        FileNode nested215 = new FileNode("Tetris.exe");
-        nested213.addChild(nested214);
-        nested213.addChild(nested215);
-        folder2.addChild(nested21);
-        folder2.addChild(nested24);
-        folder2.addChild(nested29);
-        folder2.addChild(nested213);
-
-        FolderNode folder3 = new FolderNode("Programming", root);
-
-        FolderNode lanternaProject = new FolderNode("LanternaVFS", folder3);
-        FolderNode lanternaSrc = new FolderNode("src");
-        FileNode lanternaMain = new FileNode("App.java");
-        FileNode lanternaUtils = new FileNode("Node.java");
-        FileNode lanternaPom = new FileNode("pom.xml");
-        FileNode lanternaReadme = new FileNode("README.md");
-        lanternaSrc.addChild(lanternaMain);
-        lanternaSrc.addChild(lanternaUtils);
-        lanternaProject.addChild(lanternaSrc);
-        lanternaProject.addChild(lanternaPom);
-        lanternaProject.addChild(lanternaReadme);
-        FolderNode webProject = new FolderNode("web", folder3);
-        FolderNode webSrc = new FolderNode("src");
-        FileNode webIndex = new FileNode("index.html");
-        FileNode webAppJS = new FileNode("App.jsx");
-        FileNode webStyle = new FileNode("style.css");
-        webSrc.addChild(webIndex);
-        webSrc.addChild(webAppJS);
-        webSrc.addChild(webStyle);
-        webProject.addChild(webSrc);
-        webProject.addChild(new FileNode("package.json"));
-        webProject.addChild(new FileNode("README.md"));
-        FolderNode pythonProject = new FolderNode("py scripts", folder3);
-        FileNode script1 = new FileNode("data_analysis.py");
-        FileNode script2 = new FileNode("plot_graphs.py");
-        pythonProject.addChild(script1);
-        pythonProject.addChild(script2);
-        pythonProject.addChild(new FileNode("requirements.txt"));
-        folder3.addChild(lanternaProject);
-        folder3.addChild(webProject);
-        folder3.addChild(pythonProject);
-
-        root.addChild(folder1);
-        root.addChild(folder2);
-        root.addChild(folder3);
-        root.addChild(new FileNode("report.txt", root));
-        root.addChild(new FileNode("charts.xls", root));
-        root.addChild(new FileNode("app.jar", root));
-        root.addChild(new FileNode("screenshot2025.png", root));
-        root.addChild(new FileNode("PHY201 formulae.pdf", root));
-        root.addChild(new FileNode("passwords.txt", root));
-//        SAMPLE
-
-
         try {
 //            setup
             screen = dtf.createScreen();
@@ -171,56 +77,58 @@ public class App {
 //            window size configuration
             Label termSize = new Label(screen.getTerminalSize().toString());
             Screen finalScreen = screen;
-            Thread tt = new Thread(() -> {
-                StringBuilder sb = new StringBuilder();
-                while (true) {
-                    try {
-                        Thread.sleep(50);
-                        TerminalSize ts = finalScreen.getTerminalSize();
-
-                        boolean enoughColumns = ts.getColumns() >= 90;
-                        boolean enoughRows = ts.getRows() >= 30;
-                        sb.append(ts).append("\n");
-
-                        sb.append("[").append(enoughColumns ? "x":"_").append("] – Columns\n");
-                        sb.append("[").append(enoughRows ? "x":"_").append("] – Rows\n");
-                        if (enoughColumns && enoughRows) {
-                            sb.append("Perfect! :D");
-                        } else if (enoughColumns || enoughRows) {
-                            sb.append("Almost there.");
-                        } else {
-                            sb.append("Not recommended.");
-                        }
-
-                        String finalCurrentTerm = sb.toString();
-                        textGUI.getGUIThread().invokeLater(() -> {
-                            termSize.setText(finalCurrentTerm);
-                        });
-                        sb.setLength(0);
-                    } catch (InterruptedException ignore) {
-                        Thread.currentThread().interrupt();
-                        return;
-                    }
-                }
-            });
-            tt.start();
 
             Window ww = new BasicWindow("Window size");
-//            ww.setHints(Collections.singleton(Window.Hint.CENTERED));
+            ww.addWindowListener(new WindowListenerAdapter() {
+                @Override
+                public void onResized(Window window, TerminalSize oldSize, TerminalSize newSize) {
+                    StringBuilder sb = new StringBuilder();
+                    TerminalSize ts = finalScreen.getTerminalSize();
+
+                    boolean enoughColumns = ts.getColumns() >= 90;
+                    boolean enoughRows = ts.getRows() >= 30;
+                    sb.append(ts).append("\n");
+
+                    sb.append("[").append(enoughColumns ? "x":"_").append("] – Columns\n");
+                    sb.append("[").append(enoughRows ? "x":"_").append("] – Rows\n");
+                    if (enoughColumns && enoughRows) {
+                        sb.append("Perfect! :D");
+                    } else if (enoughColumns || enoughRows) {
+                        sb.append("Almost there.");
+                    } else {
+                        sb.append("Not recommended.");
+                    }
+
+                    String finalCurrentTerm = sb.toString();
+                    textGUI.getGUIThread().invokeLater(() -> {
+                        termSize.setText(finalCurrentTerm);
+                    });
+                }
+            });
 
             Panel pp = new Panel(new LinearLayout(Direction.VERTICAL));
 
-            pp.addComponent(new Label("Recommended window dimensions are 90x30.\nTry adjusting the window to meet these values."));
+            pp.addComponent(new Label("\nRecommended window dimensions are 90x30.\nTry adjusting the window to meet these values."));
             pp.addComponent(new EmptySpace());
             pp.addComponent(termSize);
             pp.addComponent(new EmptySpace());
-            pp.addComponent(new Button("Continue", () -> {
-                tt.interrupt();
-                ww.close();
-            }).setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center)));
+            pp.addComponent(new Button("Continue", ww::close)
+                    .setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center)));
 
             ww.setComponent(pp);
             textGUI.addWindowAndWait(ww);
+
+            boolean addSample = new MessageDialogBuilder()
+                    .setTitle("Sample Data")
+                    .setText("\nDo you want to start off with pre-generated\nsample data (recommended)?")
+                    .addButton(MessageDialogButton.Yes)
+                    .addButton(MessageDialogButton.No)
+                    .build()
+                    .showDialog(textGUI).equals(MessageDialogButton.Yes);
+
+            if (addSample) {
+                addSampleData(root);
+            }
 
 //            menu bar
             MenuBar mb = new MenuBar();
@@ -239,7 +147,7 @@ public class App {
                         notify("Technical Info", "" +
                                 "Version:                                  0.1\n" +
                                 "Programming Language:               Java (21)\n" +
-                                "Package Manger:                         Maven\n" +
+                                "Package Manager:                        Maven\n" +
                                 "Libraries:             Lanterna (TUI library)\n" +
                                 "Coffee consumed:                  25.3 litres\n" +
                                 "\n" +
@@ -470,7 +378,9 @@ public class App {
                 while (true) {
                     try {
                         Thread.sleep(25);
-                    } catch (InterruptedException ignore) {}
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     textGUI.getGUIThread().invokeLater(() -> {
                         if (filesList.isFocused()) {
                             SGR empty = SGR.REVERSE;
@@ -524,16 +434,14 @@ public class App {
                     .addStyle(SGR.BOLD));
 
 //            open controls help page by pressing ? or /
-            mainWindow.addWindowListener(new WindowListener() {
-                @Override public void onInput(Window window, KeyStroke keyStroke, AtomicBoolean atomicBoolean) {
+            mainWindow.addWindowListener(new WindowListenerAdapter() {
+                @Override
+                public void onInput(Window window, KeyStroke keyStroke, AtomicBoolean atomicBoolean) {
                     if (keyStroke.getCharacter() != null && (keyStroke.getCharacter().equals('?') || keyStroke.getCharacter().equals('/'))) {
                         showHelp();
                         atomicBoolean.set(true);
                     }
                 }
-                @Override public void onResized(Window window, TerminalSize terminalSize, TerminalSize terminalSize1) { }
-                @Override public void onMoved(Window window, TerminalPosition terminalPosition, TerminalPosition terminalPosition1) { }
-                @Override public void onUnhandledInput(Window window, KeyStroke keyStroke, AtomicBoolean atomicBoolean) { }
             });
 
 //            adding vim bindings
@@ -550,36 +458,23 @@ public class App {
                     if (index != -1) {
                         item = currentFolder.get(index);
                         String nodeType = item instanceof FolderNode ? "folder":"file";
+                        String nodeTypeCapitalized = "F" + nodeType.substring(1);
                         if (keyStroke.getKeyType().equals(KeyType.Backspace) ||
                                 keyStroke.getCharacter() != null && keyStroke.getCharacter().equals('d')) {
-                            Panel modal = new Panel(new GridLayout(2));
-
-                            Window w = new BasicWindow();
-                            w.setComponent(modal);
-                            w.setHints(Collections.singleton(Window.Hint.CENTERED));
-
-                            modal.addComponent(new Label("Are you sure you want to delete " +
-                                    item.getName() + " " + nodeType + "?")
-                                    .setLayoutData(GridLayout.createHorizontallyFilledLayoutData(2)));
-                            modal.addComponent(new EmptySpace().setLayoutData(GridLayout.createHorizontallyFilledLayoutData(2)));
-                            modal.addComponent(new Button("Cancel", () -> {
-                                textGUI.setActiveWindow(mainWindow);
-                                w.close();
-                            }).setLayoutData(GridLayout.createLayoutData(GridLayout.Alignment.CENTER, GridLayout.Alignment.CENTER)));
-                            modal.addComponent(new Button("Delete", () -> {
+                            boolean isDeleted = new MessageDialogBuilder()
+                                    .setTitle(item.getName())
+                                    .setText("\nAre you sure you want to delete " + item.getName() + " " + nodeType + "?")
+                                    .addButton(MessageDialogButton.Yes)
+                                    .addButton(MessageDialogButton.No)
+                                    .build()
+                                    .showDialog(textGUI).equals(MessageDialogButton.Yes);
+                            if (isDeleted) {
                                 FolderNode parent = (FolderNode)item.getParent();
                                 parent.removeChild(item);
                                 renderChildren();
 
-                                textGUI.setActiveWindow(mainWindow);
-                                w.close();
-
-                                notify(item.getName(), "File deleted.");
-                            }).setLayoutData(GridLayout.createLayoutData(GridLayout.Alignment.CENTER, GridLayout.Alignment.CENTER)));
-
-                            textGUI.addWindow(w);
-                            textGUI.setActiveWindow(w);
-                            return false;
+                                notify(item.getName(), nodeTypeCapitalized + " deleted.");
+                            }
                         }
                         if (keyStroke.getCharacter() != null && keyStroke.getCharacter().equals('r')) {
                             String nodeName = new TextInputDialogBuilder()
@@ -805,6 +700,116 @@ public class App {
             int max = terminalWidth / 17;
             return current.getPath(max);
         }
+    }
+
+    public static void addSampleData(FolderNode root) {
+        FolderNode folder1 = new FolderNode("Pictures", root);
+
+        FolderNode nested11 = new FolderNode("Landscape");
+        FileNode nested111 = new FileNode("mountains.png");
+        FileNode nested112 = new FileNode("sunset.jpg");
+        nested11.addChild(nested111);
+        nested11.addChild(nested112);
+        FolderNode nested12 = new FolderNode("Puppies");
+        FileNode nested121 = new FileNode("puppy.png");
+        FileNode nested122 = new FileNode("puppy2.jpg");
+        nested12.addChild(nested121);
+        nested12.addChild(nested122);
+        FolderNode nested13 = new FolderNode("Travel");
+        FileNode nested131 = new FileNode("paris.png");
+        FileNode nested132 = new FileNode("tokyo.jpg");
+        nested13.addChild(nested131);
+        nested13.addChild(nested132);
+        folder1.addChild(nested11);
+        folder1.addChild(nested12);
+        folder1.addChild(nested13);
+
+        FolderNode folder2 = new FolderNode("Games", root);
+
+        FolderNode nested21 = new FolderNode("sh00ters");
+        FileNode nested22 = new FileNode("WorldOfThunder.exe");
+        FileNode nested23 = new FileNode("DutyCalls.exe");
+        nested21.addChild(nested22);
+        nested21.addChild(nested23);
+        FolderNode nested24 = new FolderNode("RPG (no jRPG)");
+        FileNode nested25 = new FileNode("SkyBeam.exe");
+        FileNode nested26 = new FileNode("Witch3.exe");
+        FileNode nested27 = new FileNode("savegame1.sav", "archer,\ncharacter lvl 27,\nstealth lvl 100,\n...");
+        FileNode nested28 = new FileNode("savegame2.sav", "ERROR:\n\tcannot resolve variable type on line 101\n...");
+        nested24.addChild(nested25);
+        nested24.addChild(nested26);
+        nested24.addChild(nested27);
+        nested24.addChild(nested28);
+        FolderNode nested29 = new FolderNode("indies");
+        FileNode nested210 = new FileNode("WholeKnight.exe");
+        FileNode nested211 = new FileNode("StarAlley.exe");
+        FileNode nested212 = new FileNode("WK_notes.txt", "- [ ] get money to upgrade the nail at the blacksmith\n- [x] explore the hot springs");
+        nested29.addChild(nested210);
+        nested29.addChild(nested211);
+        nested29.addChild(nested212);
+        FolderNode nested213 = new FolderNode("retro");
+        FileNode nested214 = new FileNode("pacwoman.exe");
+        FileNode nested215 = new FileNode("rogue_2985.exe");
+        nested213.addChild(nested214);
+        nested213.addChild(nested215);
+        folder2.addChild(nested21);
+        folder2.addChild(nested24);
+        folder2.addChild(nested29);
+        folder2.addChild(nested213);
+
+        FolderNode folder3 = new FolderNode("prog", root);
+
+        FolderNode lanternaProject = new FolderNode("LanternaVFS", folder3);
+        FolderNode lanternaSrc = new FolderNode("src");
+        FileNode lanternaMain = new FileNode("App.java", "public class App {\n\tpublic static void main (String[] args) {\n\t\tuh... code?\n\t}\n}");
+        FileNode lanternaUtils = new FileNode("Node.java", "public interface Node {/*place code here*/}");
+        FileNode lanternaPom = new FileNode("pom.xml", "<!--TODO: add maven shade dependency-->");
+        FileNode lanternaReadme = new FileNode("README.md", "Hey! It's an easter egg! No, really.\nWhat's the point? Don't ask me.\n");
+        lanternaSrc.addChild(lanternaMain);
+        lanternaSrc.addChild(lanternaUtils);
+        lanternaProject.addChild(lanternaSrc);
+        lanternaProject.addChild(lanternaPom);
+        lanternaProject.addChild(lanternaReadme);
+        FolderNode webProject = new FolderNode("web", folder3);
+        FolderNode webSrc = new FolderNode("src");
+        FileNode webIndex = new FileNode("index.html", "!!! ... it doesn't work here?");
+        FileNode webAppJS = new FileNode("App.jsx", "export default () => {\n\tconsole.log('hi')\n}");
+        FileNode webStyle = new FileNode("style.css", ".main-page__hero__panel__button-panel__button-expand--red--highlighted {\n\tcolor: red;" +
+                "\n}\n/* love BEM */");
+        webSrc.addChild(webIndex);
+        webSrc.addChild(webAppJS);
+        webSrc.addChild(webStyle);
+        webProject.addChild(webSrc);
+        webProject.addChild(new FileNode("package.json", "\"react\": \"^19.1.0\""));
+        webProject.addChild(new FileNode("README.md", "## Run & Build\n\n```\ngit clone ...\ncd ...\nnpm run dev\n```"));
+        FolderNode pythonProject = new FolderNode("py scripts", folder3);
+        FileNode script1 = new FileNode("model.py", "import torch\nfrom torch import nn\n\nclass Model(nn.Module):\n\t...");
+        FileNode script2 = new FileNode("plot_graphs.py");
+        pythonProject.addChild(script1);
+        pythonProject.addChild(script2);
+        pythonProject.addChild(new FileNode("requirements.txt", "beautifulsoup4==4.13.5\nnumpy==2.3.3\npandas==2.3.2\nrequests==2.32.5"));
+        folder3.addChild(lanternaProject);
+        folder3.addChild(webProject);
+        folder3.addChild(pythonProject);
+
+        root.addChild(folder1);
+        root.addChild(folder2);
+        root.addChild(folder3);
+        root.addChild(new FileNode("report.txt"));
+        root.addChild(new FileNode("charts.xls",
+                "Results_Q2\n" +
+                        "A1: Date | B1: Test Name | C1: Value\n" +
+                        "2025-04-15 | CPU avg | 73\n" +
+                        "2025-04-21 | CPU avg | 21\n" +
+                        "2025-04-30 | Error rate | 0.7"));
+        root.addChild(new FileNode("App.jar", "Main-Class: io.github.theparitet.App.Main\nBuild-Jdk: 21\n\n" +
+                "0100110001100001011011100111010001100101011100100110111001100001010101100100011001010011"));
+        root.addChild(new FileNode("screenshot2025.png"));
+        root.addChild(new FileNode("PHY201 formulae.pdf", "e field:\n\tE = kQ/r^2\n"));
+        root.addChild(new FileNode("passwords.txt", "Don't forget to change the leaked passwords for YouTube and GitHub!!!!\n\n" +
+                "YouTube | warowl        | ytthebest\n" +
+                "GitHub  | theparitett   | password1\n" +
+                "Gmail   | gi7@gmail.com | linusthebest\n"));
     }
 
 }
