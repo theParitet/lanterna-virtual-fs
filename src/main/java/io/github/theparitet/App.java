@@ -124,7 +124,7 @@ public class App {
 //            optional sample
             boolean addSample = new MessageDialogBuilder()
                     .setTitle("Sample Data")
-                    .setText("\nDo you want to start off with pre-generated\nsample data (recommended)?")
+                    .setText("\nDo you want to start off with pre-generated\nsample data (recommended for testing)?")
                     .addButton(MessageDialogButton.Yes)
                     .addButton(MessageDialogButton.No)
                     .build()

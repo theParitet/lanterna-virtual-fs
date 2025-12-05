@@ -29,13 +29,13 @@ Notable:
 
 - Java (21)
 - Apache Maven – build tool
-- Maven Wrapper – for consistent, reproducible builds
-- Maven Shade Plugin – for creating fat/uber `.jar` executables
+- Maven Wrapper – for consistent, reproducible builds
+- Maven Shade Plugin – for creating fat/uber `.jar` executables
 - [Lanterna](https://github.com/mabe02/lanterna) (3.1+) – TUI library, the base of the project 
 
 ## Run
 
-To run the application build:
+To run the application build (you can find the latest build in the [releases](https://github.com/theParitet/lanterna-virtual-fs/releases)):
 
 ```bash
 java -jar LanternaVFS.jar
