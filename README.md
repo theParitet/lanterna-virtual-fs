@@ -78,13 +78,12 @@ The executables are placed in `target` directory:
 - Path width not updating on resize – the path label refreshes only upon changing directories.
 - Inconsistent or broken UI – UI artifacts may be present when changing themes, terminal resizing or through other app interactions. 
   They are usually resolved after interacting with the broken UI elements (causing a redraw).
-  Small terminal dimensions and very long filenames/content often trigger this. Follow the configuration step and 
-  avoid large content .
+  Small terminal dimensions and very long filenames often trigger this. Follow the configuration step to avoid issues.
 - Color inconsistency or invisible characters – may occur on terminals with weird palettes or incomplete Unicode support. Switching themes or 
   using a different terminal often resolve it.
 - Vim keys – experimental and limited to `h/j/k/l` within `mainWindow` UI.
 
-Bug reports and contribution is welcome in this GitHub repo.
+Issues and contributions are welcome in this GitHub repo.
 
 ## Implementation
 
